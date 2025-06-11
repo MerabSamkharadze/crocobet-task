@@ -1,41 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {ActivatedRoute,} from '@angular/router';
+import {ApiService} from '../../services/api.service';
+import { map, Observable} from 'rxjs';
 
 @Component({
   standalone: true,
   selector: 'app-user-posts',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './user-posts.component.html',
   styleUrls: ['./user-posts.component.scss'],
 })
 export class UserPostsComponent implements OnInit {
-  userId!: number;
-  posts: any[] = [];
-  userName: string = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute
+  ) {}
+
+  private apiService = inject(ApiService)
+
+  apiData!: Observable<any>
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.userId = Number(params.get('userId'));
-      this.fetchUser();
-      this.fetchUserPosts();
-    });
-  }
+    const userId = this.route.snapshot.paramMap.get('userId')
+    const userName = this.route.snapshot.queryParams['userName'];
 
-  fetchUser() {
-    this.http
-      .get<any>(`https://jsonplaceholder.typicode.com/users/${this.userId}`)
-      .subscribe((user) => (this.userName = user.name));
-  }
+    if(userId) {
+      this.apiData = this.apiService.fetchUserPost(+userId).pipe(
+        map((posts) => {
 
-  fetchUserPosts() {
-    this.http
-      .get<any[]>(
-        `https://jsonplaceholder.typicode.com/posts?userId=${this.userId}`
+          return  {
+            userName,
+            posts: posts,
+          }
+        })
       )
-      .subscribe((data) => (this.posts = data));
+    }
   }
 }

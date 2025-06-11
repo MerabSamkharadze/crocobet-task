@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit,  signal,} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import {ApiService} from '../../services/api.service';
+import { Observable} from 'rxjs';
 
 @Component({
   selector: 'app-user-todos',
@@ -11,31 +12,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./user-todos.component.scss'],
 })
 export class UserTodosComponent implements OnInit {
-  todos: any[] = [];
-  userId!: number;
-  username: string = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  private route= inject(ActivatedRoute)
+  private apiService= inject(ApiService)
+
+  todosData!:Observable<any>
+
+  userName = signal('')
 
   ngOnInit(): void {
-    this.userId = Number(this.route.snapshot.paramMap.get('userId'));
-    this.fetchUser();
-    this.fetchTodos();
-  }
+    const userId = Number(this.route.snapshot.paramMap.get('userId'));
+    const userName = this.route.snapshot.queryParams['userName'];
 
-  fetchUser(): void {
-    this.http
-      .get<any>(`https://jsonplaceholder.typicode.com/users/${this.userId}`)
-      .subscribe((user) => {
-        this.username = user.name;
-      });
-  }
+    this.userName.set(userName)
 
-  fetchTodos(): void {
-    this.http
-      .get<any[]>('https://jsonplaceholder.typicode.com/todos')
-      .subscribe((data) => {
-        this.todos = data.filter((todo) => todo.userId === this.userId);
-      });
+    if(userId ) {
+      this.todosData  = this.apiService.fetchTodos(userId)
+    }
   }
 }

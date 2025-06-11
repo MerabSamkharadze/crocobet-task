@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from '../../services/posts.service';
+import { PostsService, } from '../../services/posts.service';
 import { PostModalComponent } from '../../components/post-modal/post-modal.component';
 import { CommonModule } from '@angular/common';
-import { IPost } from '../../helper';
+import {IPost} from '../../helper';
 
 @Component({
   selector: 'app-posts',

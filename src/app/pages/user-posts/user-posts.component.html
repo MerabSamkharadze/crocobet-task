@@ -1,8 +1,8 @@
-<section class="user-posts">
-  <h2 class="title">Posts by {{ userName }}</h2>
+<section class="user-posts" *ngIf="apiData | async as apiData">
+  <h2 class="title">Posts by {{ apiData.userName }}</h2>
 
-  <ul *ngIf="posts.length > 0; else noPosts" class="posts-list">
-    <li *ngFor="let post of posts" class="post-card">
+  <ul *ngIf="apiData.posts.length; else noPosts" class="posts-list">
+    <li *ngFor="let post of apiData.posts" class="post-card">
       <h3 class="post-title">{{ post.title }}</h3>
       <p class="post-body">{{ post.body }}</p>
     </li>
