@@ -35,10 +35,7 @@
             posts
           </a>
 
-          <a
-            [routerLink]="['/todos']"
-            [queryParams]="{ userId: user.id }"
-            class="btn-todos"
+          <a [routerLink]="['/users', user.id, 'todos']" class="btn-todos"
             >todos</a
           >
         </td>

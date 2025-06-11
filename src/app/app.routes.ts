@@ -23,4 +23,11 @@ export const routes: Routes = [
         (m) => m.UserPostsComponent
       ),
   },
+  {
+    path: 'users/:userId/todos',
+    loadComponent: () =>
+      import('./pages/user-todos/user-todos.component').then(
+        (m) => m.UserTodosComponent
+      ),
+  },
 ];

@@ -1,0 +1,17 @@
+<section class="user-todos">
+  <h2 class="title">Tasks for {{ username }}</h2>
+
+  <ul *ngIf="todos.length > 0; else noTodos" class="todo-list">
+    <li
+      *ngFor="let todo of todos"
+      class="todo-card"
+      [ngClass]="{ completed: todo.completed }"
+    >
+      {{ todo.title }}
+    </li>
+  </ul>
+
+  <ng-template #noTodos>
+    <p class="no-todos">This user has no todos yet.</p>
+  </ng-template>
+</section>
