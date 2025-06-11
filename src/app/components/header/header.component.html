@@ -1,1 +1,10 @@
-<p>header works!</p>
+<header>
+  <div class="logo-place">
+    <img src="https://crocobet.com/assets/icons/logo.svg" alt="crocobet-logo" />
+  </div>
+  <div class="timer-place">
+    <p>
+      {{ currentTime | date : " d MMMM y - HH:mm:ss" }}
+    </p>
+  </div>
+</header>

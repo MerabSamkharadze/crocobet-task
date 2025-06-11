@@ -1,0 +1,40 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1d283f;
+  color: #f9fafb;
+
+  .logo-place img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .timer-place {
+    background-color: #161e29;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.264);
+
+    p {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+}
