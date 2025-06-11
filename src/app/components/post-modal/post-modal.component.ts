@@ -10,7 +10,8 @@ import { Post } from '../../services/posts.service';
   styleUrls: ['./post-modal.component.scss'],
 })
 export class PostModalComponent {
-  @Input() post!: Post;
+  @Input() post: Post | null = null;
+
   @Output() close = new EventEmitter<void>();
 
   closeModal() {

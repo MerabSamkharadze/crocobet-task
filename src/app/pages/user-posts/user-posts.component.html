@@ -1,0 +1,14 @@
+<section class="user-posts">
+  <h2 class="title">Posts by {{ userName }}</h2>
+
+  <ul *ngIf="posts.length > 0; else noPosts" class="posts-list">
+    <li *ngFor="let post of posts" class="post-card">
+      <h3 class="post-title">{{ post.title }}</h3>
+      <p class="post-body">{{ post.body }}</p>
+    </li>
+  </ul>
+
+  <ng-template #noPosts>
+    <p class="no-posts">This user has no posts yet.</p>
+  </ng-template>
+</section>

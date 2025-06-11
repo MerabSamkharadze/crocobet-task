@@ -5,7 +5,7 @@
   h1 {
     margin-bottom: 2rem;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: bolder;
     text-align: center;
   }
 }
@@ -27,8 +27,10 @@
 
   h2 {
     margin-top: 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
     color: #333;
+    margin-bottom: 1.5rem;
   }
 
   p {
@@ -37,14 +39,14 @@
   }
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.393);
   }
 
   .see-more-btn {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    background-color: #007bff;
+    background-color: #10832d;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -54,7 +56,7 @@
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #1e9b2c;
     }
   }
 }

@@ -6,8 +6,8 @@
 
   <div class="posts-grid">
     <div *ngFor="let post of posts" class="post-card">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.body | slice : 0 : 80 }}...</p>
+      <h2>{{ post.authorName }}</h2>
+      <p class="author">{{ post.title }}</p>
 
       <button class="see-more-btn" (click)="openModal(post)">
         see more ...
