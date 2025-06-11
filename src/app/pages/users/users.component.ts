@@ -1,16 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import {Component, computed, inject, signal} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  company: { name: string };
-}
+import {ApiService} from '../../services/api.service';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-users-page',
@@ -19,37 +12,35 @@ interface User {
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
-export class UsersPageComponent implements OnInit {
-  users: User[] = [];
+export class UsersPageComponent {
   loading = true;
-  filteredUsers: User[] = [];
   searchTerm = '';
-  now = new Date();
 
-  constructor(private http: HttpClient) {}
+ private apiService = inject(ApiService)
 
-  ngOnInit(): void {
-    this.http
-      .get<User[]>('https://jsonplaceholder.typicode.com/users')
-      .subscribe((users) => {
-        this.users = users;
-        this.applyFilter();
+  filterValue = signal('')
+  usersSignal = toSignal(this.apiService.fetchUser())
 
-        this.loading = false;
-      });
-  }
+  fetchUser = computed(() => {
+    if(!this.usersSignal()?.length) return []
+
+     setTimeout(() => {
+       this.loading = false
+     },500)
+
+    return this.usersSignal()?.filter(u => {
+      const [first, ...rest] = u.name.split(' ');
+      const last = rest.join(' ');
+
+      return u.name.toLowerCase().includes(this.filterValue()) ||
+        last.toLowerCase().includes(this.filterValue()) ||
+        u.email.toLowerCase().includes(this.filterValue())
+    })
+  })
 
   applyFilter(): void {
     const term = this.searchTerm.toLowerCase().trim();
-    this.filteredUsers = this.users.filter((u) => {
-      const [first, ...rest] = u.name.split(' ');
-      const last = rest.join(' ');
-      return (
-        u.name.toLowerCase().includes(term) ||
-        last.toLowerCase().includes(term) ||
-        u.email.toLowerCase().includes(term)
-      );
-    });
+    this.filterValue.set(term)
   }
 
   splitName(fullName: string): { first: string; last: string } {

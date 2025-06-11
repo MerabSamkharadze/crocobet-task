@@ -1,4 +1,4 @@
-<main class="content">
+<main class="content" *ngIf="fetchUser() as fetchUser">
   <div class="search-wrapper">
     <input
       type="text"
@@ -9,7 +9,7 @@
     />
   </div>
   <div class="table-responsive">
-    <table *ngIf="!loading" class="users-table"></table>
+    <table *ngIf="loading" class="users-table">IsLoading ...</table>
   </div>
 
   <table *ngIf="!loading" class="users-table">
@@ -24,18 +24,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of filteredUsers">
+      <tr *ngFor="let user of fetchUser">
         <td>{{ splitName(user.name).first }}</td>
         <td>{{ splitName(user.name).last }}</td>
         <td>{{ user.phone }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.company.name }}</td>
         <td class="btns-wrapper">
-          <a [routerLink]="['/users', user.id, 'posts']" class="btn-posts">
+          <a [routerLink]="['/users', user.id, 'posts']" [queryParams]="{userName: user.name}" class="btn-posts">
             posts
           </a>
 
-          <a [routerLink]="['/users', user.id, 'todos']" class="btn-todos"
+          <a [routerLink]="['/users', user.id, 'todos']" [queryParams]="{userName: user.name}" class="btn-todos"
             >todos</a
           >
         </td>
