@@ -1,8 +1,6 @@
 .app {
   width: 100%;
-  height: 100dvh; // modern unit
-  height: 100lvh;
-  height: 100vh; // fallback
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,8 +9,6 @@
 
   &__header {
     width: 100%;
-    height: 10dvh;
-    height: 10lvh;
     height: 10vh;
     display: flex;
     justify-content: space-between;
@@ -21,8 +17,6 @@
 
   &__body {
     width: 100%;
-    height: 80dvh;
-    height: 80lvh;
     height: 80vh;
     display: flex;
     justify-content: flex-start;
@@ -45,8 +39,6 @@
 
   &__footer {
     width: 100%;
-    height: 10dvh;
-    height: 10lvh;
     height: 10vh;
     background-color: red;
     display: flex;
@@ -64,8 +56,6 @@
     }
 
     &__footer {
-      height: 10dvh;
-      height: 10lvh;
       height: 10vh;
     }
   }

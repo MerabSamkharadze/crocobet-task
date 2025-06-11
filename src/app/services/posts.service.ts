@@ -1,41 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, forkJoin, Observable } from 'rxjs';
-
-export interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-  authorName?: string;
-}
-
-export interface User {
-  id: number;
-  name: string;
-}
+import {IPost, IUser} from '../helper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostsService {
+  private readonly DOMAIN_URL = 'https://jsonplaceholder.typicode.com'
+
   constructor(private http: HttpClient) {}
 
-  getPostsWithAuthors(): Observable<Post[]> {
-    const posts$ = this.http.get<Post[]>(
-      'https://jsonplaceholder.typicode.com/posts'
-    );
-    const users$ = this.http.get<User[]>(
-      'https://jsonplaceholder.typicode.com/users'
-    );
-
-    return forkJoin([posts$, users$]).pipe(
+  getPostsWithAuthors(): Observable<IPost[]> {
+    return forkJoin([this.postsApi$(), this.userApi$()]).pipe(
       map(([posts, users]) => {
         return posts.map((post) => {
           const user = users.find((u) => u.id === post.userId);
+
           return { ...post, authorName: user?.name || 'Unknown' };
         });
       })
+    );
+  }
+
+  private userApi$() {
+    return this.http.get<IUser[]>(
+      `${this.DOMAIN_URL}/users`
+    );
+  }
+
+  private postsApi$() {
+    return this.http.get<IPost[]>(
+      `${this.DOMAIN_URL}/posts`
     );
   }
 }

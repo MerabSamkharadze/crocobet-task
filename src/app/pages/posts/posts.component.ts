@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService, Post } from '../../services/posts.service';
+import { PostsService } from '../../services/posts.service';
 import { PostModalComponent } from '../../components/post-modal/post-modal.component';
 import { CommonModule } from '@angular/common';
+import { IPost } from '../../helper';
 
 @Component({
   selector: 'app-posts',
@@ -11,9 +12,9 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, PostModalComponent],
 })
 export class PostsComponent implements OnInit {
-  posts: Post[] = [];
+  posts: IPost[] = [];
   loading = true;
-  selectedPost: Post | null = null;
+  selectedPost: IPost | null = null;
 
   constructor(private postsService: PostsService) {}
 
@@ -24,7 +25,7 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  openModal(post: Post) {
+  openModal(post: IPost) {
     this.selectedPost = post;
   }
 

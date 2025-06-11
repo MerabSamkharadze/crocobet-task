@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Post } from '../../services/posts.service';
+import { IPost } from '../../helper';
 
 @Component({
   selector: 'app-post-modal',
@@ -10,7 +10,7 @@ import { Post } from '../../services/posts.service';
   styleUrls: ['./post-modal.component.scss'],
 })
 export class PostModalComponent {
-  @Input() post: Post | null = null;
+  @Input() post: IPost | null = null;
 
   @Output() close = new EventEmitter<void>();
 
