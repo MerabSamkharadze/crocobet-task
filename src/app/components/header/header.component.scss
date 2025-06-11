@@ -11,7 +11,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 2rem;
+  padding: 0 28px;
   background-color: #1d283f;
   color: #f9fafb;
 
@@ -23,7 +23,7 @@ header {
 
   .timer-place {
     background-color: #161e29;
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     border-radius: 8px;
     font-family: "Courier New", monospace;
     display: flex;
@@ -32,9 +32,21 @@ header {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.264);
 
     p {
-      font-size: 1rem;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 1px;
+    }
+  }
+  @media (max-width: 1024px) {
+    padding: 8px 16px;
+
+    .logo-place img {
+      width: 50px;
+    }
+
+    .timer-place {
+      padding: 4px 8px;
+      font-size: 10px;
     }
   }
 }
