@@ -5,23 +5,35 @@
   margin: 0 auto;
 
   .search-wrapper {
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 1.5rem;
-    text-align: right;
 
     .search-input {
       width: 100%;
       max-width: 320px;
       padding: 0.6rem 1rem;
       border: 1px solid #cbd5e1;
-      border-radius: 6px;
+      border-radius: 0.375rem; // 6px
       font-size: 1rem;
       background-color: #f9fafb;
-      transition: border-color 0.2s ease;
+      color: #0f172a; // slate-900
+      transition: border-color 0.2s ease, background-color 0.2s ease,
+        box-shadow 0.2s ease;
 
       &:focus {
         outline: none;
-        border-color: #3b82f6;
-        background-color: white;
+        border-color: #3b82f6; // blue-500
+        background-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); // focus ring
+      }
+
+      &::placeholder {
+        color: #94a3b8; // slate-400
+      }
+
+      @media (max-width: 640px) {
+        max-width: 100%;
       }
     }
   }
@@ -43,7 +55,7 @@
     }
 
     th {
-      background-color: #f1f5f9;
+      background-color: #78b8f9;
       color: #1e293b;
 
       font-weight: 600;
@@ -52,10 +64,10 @@
     tr:last-child td {
       border-bottom: none;
     }
-
-    tbody tr:hover {
-      background-color: #f8fafc;
+    tr:nth-child(even) {
+      background-color: #91c694;
     }
+
     .btns-wrapper {
       display: flex;
       flex-direction: column;
