@@ -123,3 +123,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/roboto.ttf") format("truetype");
+  font-weight: bold;
+}
