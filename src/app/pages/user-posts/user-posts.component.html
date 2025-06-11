@@ -1,5 +1,5 @@
 <section class="user-posts" *ngIf="apiData | async as apiData">
-  <h2 class="title">Posts by {{ apiData.userName }}</h2>
+  <h2 class="user-posts__title">Posts by {{ apiData.userName }}</h2>
 
   <ul *ngIf="apiData.posts.length; else noPosts" class="posts-list">
     <li *ngFor="let post of apiData.posts" class="post-card">

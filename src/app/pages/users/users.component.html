@@ -8,8 +8,8 @@
       class="search-input"
     />
   </div>
-  <div class="table-responsive">
-    <table *ngIf="loading" class="users-table">IsLoading ...</table>
+  <div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
   </div>
 
   <table *ngIf="!loading" class="users-table">
@@ -31,11 +31,18 @@
         <td>{{ user.email }}</td>
         <td>{{ user.company.name }}</td>
         <td class="btns-wrapper">
-          <a [routerLink]="['/users', user.id, 'posts']" [queryParams]="{userName: user.name}" class="btn-posts">
+          <a
+            [routerLink]="['/users', user.id, 'posts']"
+            [queryParams]="{ userName: user.name }"
+            class="btn-posts"
+          >
             posts
           </a>
 
-          <a [routerLink]="['/users', user.id, 'todos']" [queryParams]="{userName: user.name}" class="btn-todos"
+          <a
+            [routerLink]="['/users', user.id, 'todos']"
+            [queryParams]="{ userName: user.name }"
+            class="btn-todos"
             >todos</a
           >
         </td>
