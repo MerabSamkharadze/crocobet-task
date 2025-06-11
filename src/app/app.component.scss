@@ -9,11 +9,9 @@
   &__header {
     width: 100%;
     height: 10vh;
-    background-color: #e6fbdf;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
   }
   &__body {
     width: 100%;
@@ -25,7 +23,7 @@
       max-width: 100px;
       width: 100%;
       height: 100%;
-      background-color: #f9f3de;
+      background-color: #202c46;
     }
     &--content {
       width: 100%;
@@ -41,5 +39,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
   }
 }

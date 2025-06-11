@@ -11,12 +11,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0rem 2rem;
   background-color: #1d283f;
   color: #f9fafb;
 
   .logo-place img {
-    width: 80px;
+    width: 60px;
     height: auto;
     object-fit: contain;
   }
@@ -32,7 +32,7 @@ header {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.264);
 
     p {
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: 1px;
     }
